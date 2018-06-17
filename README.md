@@ -1,1 +1,1 @@
-# a simple react js application / pet project
+# expensify-app
