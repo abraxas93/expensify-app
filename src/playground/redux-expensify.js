@@ -125,10 +125,22 @@ const filterReducer = (state = filterReducerDefaultState, action) => {
     }
 };
 
+// timestamps (milliseconds)
+// unix epoch time
+// 33400, 10, -203
+
+// Get visible expenses
+const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate}) => {
+    return expenses.filter((expense) => {
+        const startDateMatch = typeof startDate !== 'number' || expense.createAt >= startDate;
+        const endDateMatch = typeof endDate !== 'number' || expense.createAt <= endDate;
+        const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
+
+        return startDateMatch && endDateMatch && textMatch;
+    });
+};
+
 // Store creation
-
-//const store = createStore(expensesReducer);
-
 const store = createStore(
     combineReducers({
         expenses: expensesReducer,
@@ -137,17 +149,19 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-    console.log(store.getState());
+    const state = store.getState();
+    const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+    console.log(visibleExpenses);
 });
 
-// const expenseOne = store.dispatch(addExpense({ description: 'Rent', amount: 100 }));
-// const expenseTwo = store.dispatch(addExpense({ description: 'Coffee', amount: 300 }));
-
+const expenseOne = store.dispatch(addExpense({ description: 'Rent', amount: 100, createAt: 1000 }));
+const expenseTwo = store.dispatch(addExpense({ description: 'Coffee', amount: 300, createAt: -1000 }));
+console.log(expenseOne);
 // store.dispatch(removeExpense({ id: expenseOne.expense.id }))
 
 // store.dispatch(editExpense(expenseTwo.expense.id, { amount: 500 }));
 
-// store.dispatch(setTextFilter('rent'));
+store.dispatch(setTextFilter('rent'));
 // store.dispatch(setTextFilter(''));
 
 // store.dispatch(sortByAmount());
@@ -155,10 +169,10 @@ store.subscribe(() => {
 
 //console.log(store.getState());
 
-store.dispatch(setStartDate(125));
-store.dispatch(setStartDate());
-store.dispatch(setEndDate(1250));
-store.dispatch(setEndDate());
+//store.dispatch(setStartDate(0));
+// store.dispatch(setStartDate());
+//tore.dispatch(setEndDate(999));
+// store.dispatch(setEndDate());
 
 const demoState = {
     expenses: [{
