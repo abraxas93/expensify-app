@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const ExpenseListItem = ({ description, amount, createdAt }) => {
     return (
         <div className="expense-list-item">
@@ -9,7 +8,5 @@ const ExpenseListItem = ({ description, amount, createdAt }) => {
         </div>
     );
 }
-
-
 
 export default ExpenseListItem;
