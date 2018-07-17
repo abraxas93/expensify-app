@@ -17,7 +17,7 @@ test('should setup edit expense action object', () => {
             note: 'some note value'
         }
     });
-})
+});
 
 test('should setup add expense action object with provided values', () => {
     const expenseData = {
@@ -29,9 +29,9 @@ test('should setup add expense action object with provided values', () => {
     const action = addExpense(expenseData);
     expect(action).toEqual({
         type: 'ADD_EXPENSE',
-        expsense: {
+        expense: {
             ...expenseData,
-            id: expect.any(String)
+            "id": expect.any(String)
         }
     });
 });
@@ -49,3 +49,4 @@ test('should setup add expense action object with default values', () => {
        }
    });
 });
+
