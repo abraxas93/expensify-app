@@ -12,9 +12,9 @@ import 'normalize.css/normalize.css';
 
 const store = configureStore();
 
-store.dispatch(addExpense({ description: 'Water Bill', amount: 4000, createdAt: 0}));
-store.dispatch(addExpense({ description: 'Gas Bill', createdAt: -1000}));
-store.dispatch(addExpense({ description: 'Rent', amount: 109500, createdAt: 0 }));
+store.dispatch(addExpense({ description: 'Water Bill', amount: 150, createdAt: 0}));
+store.dispatch(addExpense({ description: 'Gas Bill', amount: 100, createdAt: -1000}));
+store.dispatch(addExpense({ description: 'Rent', amount: 330, createdAt: 0 }));
 
 
 store.subscribe(() => {
@@ -22,7 +22,7 @@ store.subscribe(() => {
 });
 const state = store.getState();
 const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-console.log(visibleExpenses);
+// console.log(visibleExpenses);
 
 
 

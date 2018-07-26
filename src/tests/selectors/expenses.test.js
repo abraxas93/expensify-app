@@ -29,7 +29,7 @@ test('should filter by text value', () => {
         endDate: undefined
     };
     const result = selectExpenses(expenses, filters);
-    expect(result).toEqual([ expenses[1], expenses[2] ]);
+    expect(result).toEqual([ expenses[2], expenses[1] ]);
 });
 
 test('should filter by startDate', () => {
@@ -40,7 +40,7 @@ test('should filter by startDate', () => {
         endDate: undefined
     };
     const result = selectExpenses(expenses, filters);
-    expect(result).toEqual([ expenses[0], expenses[2] ]);
+    expect(result).toEqual([ expenses[2], expenses[0] ]);
 });
 
 test('should filter by endtDate', () => {
@@ -62,9 +62,9 @@ test('should sort by date', () => {
         endDate: undefined
     };
     const result = selectExpenses(expenses, filters);
-    console.log(result);
-    console.log(result.length);
-    expect(result).toEqual([ expenses[0], expenses[1], expenses[2] ]);
+    //console.log(result);
+    //console.log(result.length);
+    expect(result).toEqual([ expenses[2], expenses[0], expenses[1] ]);
 });
 
 test('should sort by amount', () => {
